@@ -74,6 +74,18 @@ class displacementLinearElasticityFvMotionSolver
         //  fixed to be at points0_ location
         label frozenPointsZone_;
 
+        //
+        // DATA FOR LINEAR ELASTIC SOLVE
+        // from solidEquilibriumDisplacementFoam
+        //
+//        mutable volScalarField mu_;
+//        //volScalarField nu_; // assumed zero, per Biedron2009
+//        //volScalarField lambda_; // zero if nu is zero
+//
+        mutable volVectorField Dcorr_;
+//        mutable volSymmTensorField sigmaD_;
+//        mutable volTensorField sigmaExp_;
+
 
     // Private Member Functions
 
@@ -119,6 +131,18 @@ public:
         const volVectorField& cellDisplacement() const
         {
             return cellDisplacement_;
+        }
+
+        //- Return reference to the cell motion displacement field
+        volVectorField& Dcorr()
+        {
+            return Dcorr_;
+        }
+
+        //- Return const reference to the cell motion displacement field
+        const volVectorField& Dcorr() const
+        {
+            return Dcorr_;
         }
 
         //- Return reference to the diffusivity field
