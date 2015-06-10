@@ -82,7 +82,7 @@ class displacementLinearElasticityFvMotionSolver
 //        //volScalarField nu_; // assumed zero, per Biedron2009
 //        //volScalarField lambda_; // zero if nu is zero
 //
-        mutable volVectorField Dcorr_;
+//        mutable volVectorField Dcorr_;
 //        mutable volSymmTensorField sigmaD_;
 //        mutable volTensorField sigmaExp_;
 
@@ -131,18 +131,6 @@ public:
         const volVectorField& cellDisplacement() const
         {
             return cellDisplacement_;
-        }
-
-        //- Return reference to the cell motion displacement field
-        volVectorField& Dcorr()
-        {
-            return Dcorr_;
-        }
-
-        //- Return const reference to the cell motion displacement field
-        const volVectorField& Dcorr() const
-        {
-            return Dcorr_;
         }
 
         //- Return reference to the diffusivity field
