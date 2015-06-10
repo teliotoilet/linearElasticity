@@ -74,18 +74,8 @@ class displacementLinearElasticityFvMotionSolver
         //  fixed to be at points0_ location
         label frozenPointsZone_;
 
-        //
-        // DATA FOR LINEAR ELASTIC SOLVE
-        // from solidEquilibriumDisplacementFoam
-        //
-//        mutable volScalarField mu_;
-//        //volScalarField nu_; // assumed zero, per Biedron2009
-//        //volScalarField lambda_; // zero if nu is zero
-//
-//        mutable volVectorField Dcorr_;
-//        mutable volSymmTensorField sigmaD_;
-//        mutable volTensorField sigmaExp_;
-
+        //- Additional parameters for solving the linear elasticity equations
+        scalar nu_;
 
     // Private Member Functions
 
