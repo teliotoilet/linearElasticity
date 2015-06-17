@@ -260,10 +260,9 @@ void Foam::displacementLinearElasticityFvMotionSolver::solve()
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// based on displacementSBRStressFvMotionSolver:
+// based on displacementSBRStressFvMotionSolver
 //
 
-    //surfaceScalarField mu(diffusivityPtr_->operator()());
     surfaceScalarField mu( diffusivityPtr_->operator()() / (2*(1+nu_)) );
 
     surfaceScalarField lambda( nu_*diffusivityPtr_->operator()() / (1+nu_) / (1-2*nu_) );
@@ -281,21 +280,13 @@ void Foam::displacementLinearElasticityFvMotionSolver::solve()
 
       + fvc::div
         (
-            mu
-           *(
-                (
-                    cellDisplacement_.mesh().Sf()
-                  & fvc::interpolate(DU.T() - DU)
-                )
-
-                // Solid-body rotation "lambda" term
-//              - cellDisplacement_.mesh().Sf()*fvc::interpolate(tr(gradCd))
+            mu*
+            (
+                cellDisplacement_.mesh().Sf()
+              & fvc::interpolate(DU.T() - DU)
             )
 
-          + lambda
-           *(
-                cellDisplacement_.mesh().Sf()*fvc::interpolate(tr(DU))
-            )
+          + lambda * cellDisplacement_.mesh().Sf()*fvc::interpolate(tr(DU))
         )
     );
 
